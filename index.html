@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071522">
+  <meta name="description" content="Smart Switch - smart device control">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <title>Smart Switch v1.7</title>
+</head>
+
+<body>
+
+  <!-- LOGIN -->
+  <section id="authScreen" class="auth-screen">
+
+    <div class="auth-card">
+
+      <div class="app-logo">
+        ⚡
+      </div>
+
+      <div class="brand">
+        <h1>SMART SWITCH</h1>
+        <span>v1.7</span>
+      </div>
+
+      <p class="subtitle">
+        Smart control. Simple living.
+      </p>
+
+      <!-- LOGIN / SIGN UP TABS -->
+      <div class="auth-tabs">
+        <button id="loginTab" class="active">Log In</button>
+        <button id="signupTab">Create Account</button>
+      </div>
+
+      <!-- LOGIN -->
+      <form id="loginForm">
+
+        <label>Email</label>
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="Enter your email"
+          autocomplete="email"
+          required
+        >
+
+        <label>Password</label>
+
+        <div class="password-box">
+          <input
+            id="loginPassword"
+            type="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          >
+
+          <button type="button" id="showLoginPassword">
+            👁
+          </button>
+        </div>
+
+        <button class="main-button" type="submit">
+          Log In
+        </button>
+
+        <button class="text-button" type="button" id="forgotPassword">
+          Forgot password?
+        </button>
+
+      </form>
+
+      <!-- CREATE ACCOUNT -->
+      <form id="signupForm" class="hidden">
+
+        <label>Username</label>
+        <input
+          id="signupUsername"
+          type="text"
+          placeholder="Choose a username"
+          autocomplete="username"
+          required
+        >
+
+        <label>Full name</label>
+        <input
+          id="signupName"
+          type="text"
+          placeholder="Your full name"
+          autocomplete="name"
+          required
+        >
+
+        <label>Phone number</label>
+        <input
+          id="signupPhone"
+          type="tel"
+          placeholder="+254..."
+          autocomplete="tel"
+          required
+        >
+
+        <label>Email</label>
+        <input
+          id="signupEmail"
+          type="email"
+          placeholder="Your email address"
+          autocomplete="email"
+          required
+        >
+
+        <label>Password</label>
+        <input
+          id="signupPassword"
+          type="password"
+          placeholder="At least 8 characters"
+          minlength="8"
+          required
+        >
+
+        <label>Confirm password</label>
+        <input
+          id="signupConfirm"
+          type="password"
+          placeholder="Repeat your password"
+          minlength="8"
+          required
+        >
+
+        <button class="main-button" type="submit">
+          Create Account
+        </button>
+
+      </form>
+
+      <p id="authMessage"></p>
+
+      <div class="copyright">
+        © 2026 Created by Newton
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- MAIN APPLICATION -->
+  <section id="appScreen" class="hidden">
+
+    <header class="topbar">
+
+      <button id="menuButton" class="menu-button">
+        ☰
+      </button>
+
+      <div class="top-title">
+        ⚡ SMART SWITCH
+      </div>
+
+      <div class="connection">
+        ● Online
+      </div>
+
+    </header>
+
+
+    <!-- SIDE DASHBOARD -->
+    <aside id="sideDashboard">
+
+      <div class="dashboard-header">
+        <strong>SMART SWITCH</strong>
+
+        <button id="closeDashboard">
+          ×
+        </button>
+      </div>
+
+      <div class="profile-box">
+
+        <div class="profile-icon">
+          👤
+        </div>
+
+        <div>
+          <strong id="dashboardName">
+            User
+          </strong>
+
+          <small id="dashboardUsername">
+            @user
+          </small>
+        </div>
+
+      </div>
+
+      <button class="dashboard-item" data-section="devices">
+        ⚡ My Devices
+      </button>
+
+      <button class="dashboard-item" data-section="addDevice">
+        ＋ Add Device
+      </button>
+
+      <button class="dashboard-item" id="tutorialButton">
+        🤖 AI Tutorial
+      </button>
+
+      <button class="dashboard-item" id="adminButton">
+        👥 User Management
+      </button>
+
+      <button class="dashboard-item" id="inviteButton">
+        ✉ Invite User
+      </button>
+
+      <button class="dashboard-item" id="logoutButton">
+        ↪ Log Out
+      </button>
+
+    </aside>
+
+    <div id="dashboardOverlay" class="hidden"></div>
+
+
+    <main class="content">
+
+      <!-- WELCOME -->
+      <section class="welcome-card">
+
+        <div>
+          <small>SMART CONTROL</small>
+
+          <h2>
+            Welcome back,
+            <span id="welcomeName">
+              User
+            </span>
+          </h2>
+
+          <p>
+            Control your connected devices from one place.
+          </p>
+        </div>
+
+        <div class="big-logo">
+          ⚡
+        </div>
+
+      </section>
+
+
+      <!-- AI ASSISTANT -->
+      <section class="panel">
+
+        <div class="panel-title">
+          <span>🤖</span>
+
+          <div>
+            <strong>Smart Assistant</strong>
+            <small>Your friendly switch assistant</small>
+          </div>
+        </div>
+
+        <div id="assistantReply" class="assistant-reply">
+          Hi! I'm ready to help. 😊
+        </div>
+
+        <form id="assistantForm" class="assistant-form">
+
+          <input
+            id="assistantInput"
+            type="text"
+            placeholder="Try: turn on Living Room"
+          >
+
+          <button type="button" id="voiceButton">
+            🎙️
+          </button>
+
+          <button class="main-button" type="submit">
+            Send
+          </button>
+
+        </form>
+
+      </section>
+
+
+      <!-- DEVICES -->
+      <section id="devicesSection">
+
+        <div class="section-heading">
+          <h2>My Devices</h2>
+
+          <span id="deviceCount">
+            0
+          </span>
+        </div>
+
+        <div id="deviceList"></div>
+
+      </section>
+
+
+      <!-- ADD DEVICE -->
+      <section id="addDeviceSection" class="panel">
+
+        <small>ADD A DEVICE</small>
+
+        <h2>
+          Connect a controller
+        </h2>
+
+        <p class="muted">
+          Add your ESP8266, ESP-01, ESP32 or another compatible
+          authorized HTTP/MQTT device.
+        </p>
+
+        <form id="deviceForm">
+
+          <label>Device name</label>
+
+          <input
+            id="deviceName"
+            type="text"
+            placeholder="Living Room Relay"
+            required
+          >
+
+          <label>Device type</label>
+
+          <select id="deviceType">
+
+            <option>
+              ESP8266 / ESP-01 Relay
+            </option>
+
+            <option>
+              ESP32
+            </option>
+
+            <option>
+              HTTP / REST API Device
+            </option>
+
+            <option>
+              MQTT Device
+            </option>
+
+          </select>
+
+          <label>IP address / hostname</label>
+
+          <input
+            id="deviceHost"
+            type="text"
+            placeholder="192.168.1.100"
+          >
+
+          <label>Port</label>
+
+          <input
+            id="devicePort"
+            type="number"
+            value="80"
+            min="1"
+            max="65535"
+          >
+
+          <label>Protocol</label>
+
+          <select id="deviceProtocol">
+            <option>HTTP</option>
+            <option>HTTPS</option>
+            <option>MQTT</option>
+          </select>
+
+          <button class="main-button" type="submit">
+            ＋ Add Device
+          </button>
+
+        </form>
+
+      </section>
+
+
+      <!-- ADMIN -->
+      <section id="adminSection" class="panel hidden">
+
+        <small>ADMINISTRATION</small>
+
+        <h2>
+          User Management
+        </h2>
+
+        <p class="muted">
+          Manage people who have been authorized to use Smart Switch.
+        </p>
+
+        <button id="adminInviteButton" class="main-button">
+          ＋ Invite User
+        </button>
+
+        <div id="userList"></div>
+
+      </section>
+
+    </main>
+
+  </section>
+
+
+  <!-- AI TUTORIAL -->
+  <div id="tutorialModal" class="modal hidden">
+
+    <div class="modal-card">
+
+      <small>SMART SWITCH AI TUTORIAL</small>
+
+      <h2 id="tutorialTitle">
+        Welcome
+      </h2>
+
+      <p id="tutorialText">
+        Welcome to Smart Switch.
+      </p>
+
+      <div class="modal-buttons">
+
+        <button id="tutorialBack">
+          Back
+        </button>
+
+        <button id="tutorialNext" class="main-button">
+          Next
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- INVITE USER -->
+  <div id="inviteModal" class="modal hidden">
+
+    <div class="modal-card">
+
+      <small>USER INVITATION</small>
+
+      <h2>
+        Invite someone
+      </h2>
+
+      <form id="inviteForm">
+
+        <input
+          id="inviteName"
+          placeholder="Full name"
+          required
+        >
+
+        <input
+          id="inviteEmail"
+          type="email"
+          placeholder="Email address"
+          required
+        >
+
+        <input
+          id="invitePhone"
+          type="tel"
+          placeholder="Phone number"
+          required
+        >
+
+        <select id="inviteRole">
+          <option value="user">User</option>
+          <option value="admin">Administrator</option>
+        </select>
+
+        <button class="main-button">
+          Create Invitation
+        </button>
+
+      </form>
+
+      <button id="closeInvite">
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- TOAST -->
+  <div id="toast"></div>
+
+
+  <script src="app.js"></script>
+
+</body>
+</html>
